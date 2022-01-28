@@ -13,12 +13,12 @@ public class RepositoryManager : IRepositoryManager
         _companyRepository = new Lazy<ICompanyRepository>(() => new CompanyRepository(repositoryContext));
         _employeeRepository = new Lazy<IEmployeeRepository>(() => new EmployeeRepository(repositoryContext));
     }
-
-    public ICompanyRepository CompanyRepository => _companyRepository.Value;
-    public IEmployeeRepository EmployeeRepository => _employeeRepository.Value;
     public void test()
     {
-
     }
+    public ICompanyRepository CompanyRepository => _companyRepository.Value;
+    public IEmployeeRepository EmployeeRepository => _employeeRepository.Value;
+
+
     public void Save() => _repositoryContext.SaveChanges();
 }

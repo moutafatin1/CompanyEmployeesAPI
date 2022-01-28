@@ -3,20 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyEmployeesAPI", "CompanyEmployeesAPI\CompanyEmployeesAPI.csproj", "{D21BF780-FED7-41A7-A38C-08D9CB7477B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyEmployeesAPI", "CompanyEmployeesAPI\CompanyEmployeesAPI.csproj", "{D21BF780-FED7-41A7-A38C-08D9CB7477B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "Contracts\Contracts.csproj", "{DEBBB63D-FC77-400E-AFEC-5492B0A357C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{DEBBB63D-FC77-400E-AFEC-5492B0A357C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerService", "LoggerService\LoggerService.csproj", "{48CC5F61-AE35-4200-B54A-6098CBF645B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{48CC5F61-AE35-4200-B54A-6098CBF645B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A29637C-2F29-4615-BE18-BE05EF2FFEB0}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{5EC8DA59-43C5-42E3-B945-CEDE103F0DF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{5EC8DA59-43C5-42E3-B945-CEDE103F0DF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{27EDEC75-6C6B-4808-818D-90A708202E93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{27EDEC75-6C6B-4808-818D-90A708202E93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Contracts", "Service.Contracts\Service.Contracts.csproj", "{E9450C74-C20A-42F4-87AD-FF34FBAF67F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{27EDEC75-6C6B-4808-818D-90A708202E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27EDEC75-6C6B-4808-818D-90A708202E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27EDEC75-6C6B-4808-818D-90A708202E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9450C74-C20A-42F4-87AD-FF34FBAF67F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9450C74-C20A-42F4-87AD-FF34FBAF67F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9450C74-C20A-42F4-87AD-FF34FBAF67F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9450C74-C20A-42F4-87AD-FF34FBAF67F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
