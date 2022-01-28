@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Repository;
 
 namespace CompanyEmployeesAPI.ContextFactory;
 
+// we use IDesignTimeDbContextFactory to separate the entity framework code needed
+// for generating database tables at design-time(code first approach) from the entity framework code used
+// by our application in runtime
 public class RepositoryContextFactory : IDesignTimeDbContextFactory<RepositoryContext>
 {
     public RepositoryContext CreateDbContext(string[] args)
@@ -14,8 +16,9 @@ public class RepositoryContextFactory : IDesignTimeDbContextFactory<RepositoryCo
             .Build();
 
         var builder = new DbContextOptionsBuilder<RepositoryContext>();
-        builder.UseSqlServer(configuration.GetConnectionString("sqlConnection"),
-                      b => b.MigrationsAssembly("CompanyEmployeesAPI"));
+        var connectionString = configuration.GetConnectionString("sqlConnection");
+
+        builder.UseSqlServer(connectionString, b => b.MigrationsAssembly("CompanyEmployeesAPI"));
 
         return new RepositoryContext(builder.Options);
 
