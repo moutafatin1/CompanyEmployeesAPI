@@ -19,11 +19,10 @@ builder.Services.AddControllers().AddApplicationPart(typeof(CompanyEmployeesAPI.
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-}
-else
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+app.ConfigureExceptionHnadler(logger);
+
+if (app.Environment.IsProduction())
 {
     app.UseHsts();
 }
