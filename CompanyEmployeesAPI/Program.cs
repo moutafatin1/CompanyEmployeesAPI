@@ -19,6 +19,7 @@ builder.Services.AddControllers(config =>
     config.RespectBrowserAcceptHeader = true;
     config.ReturnHttpNotAcceptable = true;
 }).AddXmlDataContractSerializerFormatters()
+  .AddCostumCSVFormatter()
   .AddApplicationPart(typeof(CompanyEmployeesAPI.Presentation.AssemblyReference
     ).Assembly);
 
