@@ -7,4 +7,6 @@ public abstract class NotFoundException : Exception
     {
 
     }
+
 }
+
