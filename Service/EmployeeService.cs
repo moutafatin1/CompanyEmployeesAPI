@@ -1,6 +1,7 @@
 ﻿
 using AutoMapper;
 using Entities.Exceptions;
+using Entities.Models;
 using Shared.DataTransferObjects;
 
 namespace Service;
@@ -17,6 +18,8 @@ internal sealed class EmployeeService : IEmployeeService
         _logger = logger;
         _mapper = mapper;
     }
+
+
 
     public EmployeeDto GetEmployee(Guid companyId, Guid id, bool trackChanges)
     {
@@ -44,5 +47,21 @@ internal sealed class EmployeeService : IEmployeeService
         var employeesFromDb = _repository.EmployeeRepository.GetEmployees(companyId, trackChanges);
         var employeesDto = _mapper.Map<IEnumerable<EmployeeDto>>(employeesFromDb);
         return employeesDto;
+    }
+
+    public EmployeeDto CreateEmployeeForCompany(Guid companyId, EmployeeForCreationDto employee, bool trackChanges)
+    {
+        var company = _repository.CompanyRepository.GetCompany(companyId, trackChanges);
+        if (company is null)
+        {
+            throw new CompanyNotFoundException(companyId);
+        }
+        var employeeEntity = _mapper.Map<Employee>(employee);
+        _repository.EmployeeRepository.CreateEmployeeForCompany(companyId, employeeEntity);
+        _repository.Save();
+        var employeeToReturn = _mapper.Map<EmployeeDto>(employeeEntity);
+
+        return employeeToReturn;
+
     }
 }
