@@ -1,5 +1,6 @@
 using CompanyEmployeesAPI.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +15,19 @@ builder.Services.ConfigureSqlContext(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+
+// suppressing default model state state validation that is implement  due to
+// the existence of the [ApiController] attribute in all Api Controller
+// we do that to send our costume message to the client instead of keeping the ApiController 
+// attribute to send 400 response.
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
+
 builder.Services.AddControllers(config =>
 {
-    config.RespectBrowserAcceptHeader = true;
+    config.RespectBrowserAcceptHeader = false;
     config.ReturnHttpNotAcceptable = true;
 }).AddXmlDataContractSerializerFormatters()
   .AddCostumCSVFormatter()
