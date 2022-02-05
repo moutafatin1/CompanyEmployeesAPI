@@ -79,4 +79,18 @@ internal sealed class EmployeeService : IEmployeeService
         _repository.Save();
 
     }
+
+    public void UpdateEmployeeForCompany(Guid companyId, Guid id, EmployeeForUpdateDto employeeForUpdate, bool compTrackChanges, bool empTrackChanges)
+    {
+        var company = _repository.CompanyRepository.GetCompany(companyId, compTrackChanges);
+        if (company is null)
+            throw new CompanyNotFoundException(companyId);
+
+        var employeeEnitity = _repository.EmployeeRepository.GetEmployee(companyId, id, empTrackChanges);
+        if (employeeEnitity is null)
+            throw new EmployeeNotFoundException(id);
+
+        _mapper.Map(employeeForUpdate, employeeEnitity);
+        _repository.Save();
+    }
 }
