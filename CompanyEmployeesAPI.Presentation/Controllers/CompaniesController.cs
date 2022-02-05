@@ -1,5 +1,6 @@
 ﻿
 
+using CompanyEmployeesAPI.Presentation.ModelBinders;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyEmployeesAPI.Presentation.Controllers;
@@ -31,6 +32,13 @@ public class CompaniesController : ControllerBase
         return Ok(company);
     }
 
+    [HttpGet("collection/{ids}", Name = "CompanyCollection")]
+    public IActionResult GetCompanyCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<Guid> ids)
+    {
+        var companies = _service.CompanyService.GetByIds(ids, trackChanges: false);
+        return Ok(companies);
+    }
+
     [HttpPost]
 
     public IActionResult CreateCompany([FromBody] CompanyForCreationDto company)
@@ -45,5 +53,12 @@ public class CompaniesController : ControllerBase
         {
             id = createdCompany.Id,
         }, createdCompany);
+    }
+
+    [HttpPost("collection")]
+    public IActionResult CreateCompanyCollection([FromBody] IEnumerable<CompanyForCreationDto> companyCollection)
+    {
+        var result = _service.CompanyService.CreateCompanyCollection(companyCollection);
+        return CreatedAtRoute("companyCollection", new { result.ids }, result.companies);
     }
 }
