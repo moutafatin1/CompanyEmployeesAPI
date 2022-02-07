@@ -44,9 +44,12 @@ public class CompaniesController : ControllerBase
     public IActionResult CreateCompany([FromBody] CompanyForCreationDto company)
     {
         if (company is null)
-        {
             return BadRequest("CompanyForCreationDto Object is null");
-        }
+
+
+        if (!ModelState.IsValid)
+            return UnprocessableEntity(ModelState);
+
         var createdCompany = _service.CompanyService.CreateCompany(company);
 
         return CreatedAtRoute("CompanyById", new
@@ -75,6 +78,9 @@ public class CompaniesController : ControllerBase
     {
         if (company is null)
             return BadRequest("CompanyForUpdateDto object is null.");
+
+        if (!ModelState.IsValid)
+            return UnprocessableEntity(ModelState);
 
         _service.CompanyService.UpdateCompany(id, company, trackChanges: true);
 
