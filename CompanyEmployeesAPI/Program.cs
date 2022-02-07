@@ -1,4 +1,5 @@
 using CompanyEmployeesAPI.Extensions;
+using CompanyEmployeesAPI.Presentation.ActionFilters;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -26,6 +27,8 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
 });
+
+builder.Services.AddScoped<ValidationFilterAttribute>();
 
 builder.Services.AddControllers(config =>
 {
