@@ -34,14 +34,12 @@ internal sealed class CompanyService : ICompanyService
 
     }
 
+
+
     public async Task<CompanyDto> GetCompanyAsync(Guid companyId, bool trackChanges)
     {
-        var company = await _repository.CompanyRepository.GetCompanyAsync(companyId, trackChanges);
+        var company = await GetCompanyAndCheckIfItExists(companyId, trackChanges);
 
-        if (company is null)
-        {
-            throw new CompanyNotFoundException(companyId);
-        }
         var companyDto = _mapper.Map<CompanyDto>(company);
         return companyDto;
     }
@@ -94,9 +92,7 @@ internal sealed class CompanyService : ICompanyService
 
     public async Task DeleteCompanyAsync(Guid companyId, bool trackChanges)
     {
-        var company = await _repository.CompanyRepository.GetCompanyAsync(companyId, trackChanges);
-        if (company is null)
-            throw new CompanyNotFoundException(companyId);
+        var company = await GetCompanyAndCheckIfItExists(companyId, trackChanges);
 
         _repository.CompanyRepository.DeleteCompany(company);
         await _repository.SaveAsync();
@@ -104,12 +100,19 @@ internal sealed class CompanyService : ICompanyService
 
     public async Task UpdateCompanyAsync(Guid companyId, CompanyForUpdateDto companyForUpdate, bool trackChanges)
     {
-        var companyEnitity = await _repository.CompanyRepository.GetCompanyAsync(companyId, trackChanges);
-        if (companyEnitity is null)
-            throw new CompanyNotFoundException(companyId);
+        var companyEnitity = await GetCompanyAndCheckIfItExists(companyId, trackChanges);
 
         _mapper.Map(companyForUpdate, companyEnitity);
         await _repository.SaveAsync();
+    }
+
+    public async Task<Company> GetCompanyAndCheckIfItExists(Guid companyId, bool trackChanges)
+    {
+        var company = await _repository.CompanyRepository.GetCompanyAsync(companyId, trackChanges);
+        if (company is null)
+            throw new CompanyNotFoundException(companyId);
+
+        return company;
     }
 }
 
