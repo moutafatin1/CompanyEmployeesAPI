@@ -23,7 +23,9 @@ public class EmployeesController : ControllerBase
     {
 
         var pagedResult = await _service.EmployeeService.GetEmployeesAsync(companyId, employeeParameters, trackChanges: false);
+
         Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pagedResult.metaData));
+
         return Ok(pagedResult.employees);
     }
 
