@@ -1,4 +1,6 @@
 ﻿using LoggerService;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Service;
 using Service.Contracts;
@@ -36,4 +38,16 @@ public static class ServiceExtensions
     public static IMvcBuilder AddCostumCSVFormatter(this IMvcBuilder builder) =>
         builder.AddMvcOptions(config => config.OutputFormatters.Add(new CsvOutputFormatter()));
 
+
+    public static void AddCostumMediaType(this IServiceCollection services)
+    {
+        services.Configure<MvcOptions>(config =>
+        {
+            var systemTextJsonOutputFormatter = config.OutputFormatters.OfType<SystemTextJsonOutputFormatter>()?.FirstOrDefault();
+            if (systemTextJsonOutputFormatter != null)
+            {
+                systemTextJsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.codemaze.apiroot+json");
+            }
+        });
+    }
 }

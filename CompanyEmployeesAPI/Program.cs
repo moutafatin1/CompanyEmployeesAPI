@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Options;
 using NLog;
+using Service.DataShaping;
+using Shared.DataTransferObjects;
+
 var builder = WebApplication.CreateBuilder(args);
 
 LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
@@ -29,6 +32,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 });
 
 builder.Services.AddScoped<ValidationFilterAttribute>();
+builder.Services.AddScoped<IDataShaper<EmployeeDto>, DataShaper<EmployeeDto>>();
 
 builder.Services.AddControllers(config =>
 {
@@ -39,7 +43,7 @@ builder.Services.AddControllers(config =>
   .AddCostumCSVFormatter()
   .AddApplicationPart(typeof(CompanyEmployeesAPI.Presentation.AssemblyReference
     ).Assembly);
-
+builder.Services.AddCostumMediaType();
 var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILoggerManager>();
