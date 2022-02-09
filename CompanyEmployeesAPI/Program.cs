@@ -44,6 +44,10 @@ builder.Services.AddControllers(config =>
   .AddApplicationPart(typeof(CompanyEmployeesAPI.Presentation.AssemblyReference
     ).Assembly);
 builder.Services.AddCostumMediaType();
+builder.Services.ConfigureVersioning();
+
+
+
 var app = builder.Build();
 
 var logger = app.Services.GetRequiredService<ILoggerManager>();
