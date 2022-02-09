@@ -39,12 +39,17 @@ builder.Services.AddControllers(config =>
     config.RespectBrowserAcceptHeader = false;
     config.ReturnHttpNotAcceptable = true;
     config.InputFormatters.Insert(0, GetJsonPatchIpnutFormatter());
+    config.CacheProfiles.Add("120SecondsDuration", new CacheProfile { Duration = 120 });
 }).AddXmlDataContractSerializerFormatters()
   .AddCostumCSVFormatter()
   .AddApplicationPart(typeof(CompanyEmployeesAPI.Presentation.AssemblyReference
     ).Assembly);
 builder.Services.AddCostumMediaType();
+
 builder.Services.ConfigureVersioning();
+
+builder.Services.ConfigureResponseCaching();
+builder.Services.ConfigureHttpCacheHeaders();
 
 
 
@@ -69,6 +74,9 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 });
 
 app.UseCors("CorsPolicy");
+
+app.UseResponseCaching();
+app.UseHttpCacheHeaders();
 
 app.UseAuthorization();
 
