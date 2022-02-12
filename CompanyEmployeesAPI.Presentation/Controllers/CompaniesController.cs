@@ -2,6 +2,7 @@
 
 using CompanyEmployeesAPI.Presentation.ActionFilters;
 using CompanyEmployeesAPI.Presentation.ModelBinders;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CompanyEmployeesAPI.Presentation.Controllers;
@@ -19,6 +20,7 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpGet(Name = "GetCompanies")]
+    [Authorize(Roles = "Manager")]
     public async Task<IActionResult> GetCompanies()
     {
         var companies = await _service.CompanyService.GetAllCompaniesAsync(trackChanges: false);

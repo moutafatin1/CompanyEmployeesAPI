@@ -128,13 +128,14 @@ public static class ServiceExtensions
 
     public static void ConfigureJWT(this IServiceCollection service, IConfiguration configuration)
     {
-        var jwtSettigns = configuration.GetSection("JwtSettings");
-        var secretKey = Environment.GetEnvironmentVariable("SECRET");
+        var JwtSettings = configuration.GetSection("JwtSettings");
+
 
         service.AddAuthentication(opt =>
         {
             opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
             opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
         }).AddJwtBearer(options =>
         {
             options.TokenValidationParameters = new TokenValidationParameters
@@ -144,9 +145,9 @@ public static class ServiceExtensions
                 ValidateLifetime = true,
                 ValidateIssuerSigningKey = true,
 
-                ValidIssuer = jwtSettigns["validIssuer"],
-                ValidAudience = jwtSettigns["validAudience"],
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+                ValidIssuer = JwtSettings["validIssuer"],
+                ValidAudience = JwtSettings["validAudience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("HadiHiaSecretKeyDyalJwtToken"))
 
 
             };
