@@ -18,7 +18,7 @@ public class RoleConfiguration : IEntityTypeConfiguration<IdentityRole>
             new IdentityRole
             {
                 Name = "Administrator",
-                NormalizedName = "ADMINiSTRATOR"
+                NormalizedName = "ADMINISTRATOR"
             });
     }
 }

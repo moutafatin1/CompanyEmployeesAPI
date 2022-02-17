@@ -18,13 +18,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{27EDEC75-6C6B-4808-818D-90A708202E93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Contracts", "Service.Contracts\Service.Contracts.csproj", "{E9450C74-C20A-42F4-87AD-FF34FBAF67F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Contracts", "Service.Contracts\Service.Contracts.csproj", "{E9450C74-C20A-42F4-87AD-FF34FBAF67F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{A1D10437-C896-4C45-B29A-8E48BDBFEFB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{A1D10437-C896-4C45-B29A-8E48BDBFEFB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyEmployeesAPI.Presentation", "CompanyEmployeesAPI.Presentation\CompanyEmployeesAPI.Presentation.csproj", "{1843D13C-63B7-4425-8EC5-D113396D8659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CompanyEmployeesAPI.Presentation", "CompanyEmployeesAPI.Presentation\CompanyEmployeesAPI.Presentation.csproj", "{1843D13C-63B7-4425-8EC5-D113396D8659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{95A3EFB1-F63A-4B97-8732-E39215E2D303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{95A3EFB1-F63A-4B97-8732-E39215E2D303}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{2F472A68-AB74-40B6-84E7-0240409EAAA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repositories", "Repositories", "{70429558-E345-4EBE-BB3F-598A09A876A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DEBBB63D-FC77-400E-AFEC-5492B0A357C9} = {70429558-E345-4EBE-BB3F-598A09A876A4}
+		{27EDEC75-6C6B-4808-818D-90A708202E93} = {70429558-E345-4EBE-BB3F-598A09A876A4}
+		{E9450C74-C20A-42F4-87AD-FF34FBAF67F2} = {2F472A68-AB74-40B6-84E7-0240409EAAA6}
+		{A1D10437-C896-4C45-B29A-8E48BDBFEFB2} = {2F472A68-AB74-40B6-84E7-0240409EAAA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B450302C-FD8D-4120-959C-A9B4A39ADFFC}

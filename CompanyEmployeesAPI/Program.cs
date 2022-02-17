@@ -25,8 +25,8 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 // suppressing default model state state validation that is implement  due to
 // the existence of the [ApiController] attribute in all Api Controller
-// we do that to send our costume message to the client instead of keeping the ApiController 
-// attribute to send 400 response.
+// we do that to send our costume message to the client instead of keeping the ApiController attribute to send 400 response.
+
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.SuppressModelStateInvalidFilter = true;
